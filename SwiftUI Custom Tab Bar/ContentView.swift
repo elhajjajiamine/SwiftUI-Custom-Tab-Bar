@@ -8,9 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = 0
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        ZStack {
+            Color("SPB").edgesIgnoringSafeArea(.all)
+
+            VStack {
+                TabView(selection: $selection) {
+                    HomeView()
+                        .tag(0)
+                    SearchView()
+                        .tag(1)
+                    PlaylistView()
+                        .tag(2)
+                }
+                
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                Divider()
+                TabBarView(selection: $selection)
+                
+            }
+        }
+        
     }
 }
 
